@@ -1,0 +1,118 @@
+{
+  "3": {
+    "inputs": {
+      "seed": 381156368436551,
+      "steps": 20,
+      "cfg": 2.5,
+      "sampler_name": "euler",
+      "scheduler": "karras",
+      "denoise": 1,
+      "model": [
+        "14",
+        0
+      ],
+      "positive": [
+        "12",
+        0
+      ],
+      "negative": [
+        "12",
+        1
+      ],
+      "latent_image": [
+        "12",
+        2
+      ]
+    },
+    "class_type": "KSampler",
+    "_meta": {
+      "title": "KSampler"
+    }
+  },
+  "8": {
+    "inputs": {
+      "samples": [
+        "3",
+        0
+      ],
+      "vae": [
+        "15",
+        2
+      ]
+    },
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "VAE Decode"
+    }
+  },
+  "12": {
+    "inputs": {
+      "width": 1024,
+      "height": 576,
+      "video_frames": 14,
+      "motion_bucket_id": 127,
+      "fps": 6,
+      "augmentation_level": 0,
+      "clip_vision": [
+        "15",
+        1
+      ],
+      "init_image": [
+        "25",
+        0
+      ],
+      "vae": [
+        "15",
+        2
+      ]
+    },
+    "class_type": "SVD_img2vid_Conditioning",
+    "_meta": {
+      "title": "SVD_img2vid_Conditioning"
+    }
+  },
+  "14": {
+    "inputs": {
+      "min_cfg": 1,
+      "model": [
+        "15",
+        0
+      ]
+    },
+    "class_type": "VideoLinearCFGGuidance",
+    "_meta": {
+      "title": "VideoLinearCFGGuidance"
+    }
+  },
+  "15": {
+    "inputs": {
+      "ckpt_name": "SVD\\svd.safetensors"
+    },
+    "class_type": "ImageOnlyCheckpointLoader",
+    "_meta": {
+      "title": "Image Only Checkpoint Loader (img2vid model)"
+    }
+  },
+  "24": {
+    "inputs": {
+      "filename_prefix": "ComfyUI",
+      "images": [
+        "8",
+        0
+      ]
+    },
+    "class_type": "SaveImage",
+    "_meta": {
+      "title": "Save Image"
+    }
+  },
+  "25": {
+    "inputs": {
+      "image": "iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABvElEQVQ4EaXBQWoTYQCG4febRLpN14JOahWmiCZdCd2IFxAvYDInsJ6gR7B4gYwn8AgVpAtFnIq104boZKAguLDdVUr6f05olVJm1+cR1yQu/NrzCwWeAj3MogFRE5eZf4ws3onaz28eCQaAgCMHXkdmJ4hjLhMxMKImgU2qw10PJEaAED4VS91EUxoc7jqTGCAMVDdX1FW151zQY05ktxKlNChzx60FcqBjIATS7n1lKgsbMCAg7SbKaDDZ9TCKGFGTOAJWu4mm+r7v34ZFGzAv765okwbjwqUgFmBzPBP9JNFU47FfhcC6hIOp/pzQ7/d1zBVF4TiKeAs8tBGiPAk8UVE4dsQW4jYGw5fTwLN+oilX5KU7C6fkNrEEwWyKWlE4nrXJHegg5soH97REg68H3kBs2EiiFLW8cEybHNNhLmLYX9YbGuRjD4ERF0Tt08QDTCZhQxVFPF5dUkWDjwfOWi2e2wjYEbUPE5dATM0ie3RHKQ22x+7diPhsELUAqbYnHkqMuBAihp5Rtdr4bIZabRzOiDG9SKwzJ7DJ1paV6v0Pb8nEgXMREPhPzAljzpmqBdnasjJq4pr+AuEWzU4x7NF4AAAAAElFTkSuQmCC"
+    },
+    "class_type": "ETN_LoadImageBase64",
+    "_meta": {
+      "title": "Load Image (Base64)"
+    }
+  }
+}

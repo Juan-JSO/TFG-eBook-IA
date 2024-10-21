@@ -1,0 +1,46 @@
+[gd_scene load_steps=3 format=3 uid="uid://kbqq0gljl3hd"]
+
+[ext_resource type="Script" path="res://button_image_path.gd" id="1_c0u4e"]
+[ext_resource type="Texture2D" uid="uid://c7e5jk2cjq645" path="res://93-375853511-0.png" id="2_vjdkk"]
+
+[node name="ButtonImagePath" type="Button" node_paths=PackedStringArray("texture_rect", "check_box")]
+custom_minimum_size = Vector2(120, 150)
+focus_mode = 0
+script = ExtResource("1_c0u4e")
+texture_rect = NodePath("VBoxContainer/TextureRect")
+check_box = NodePath("VBoxContainer/CheckBox")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+texture = ExtResource("2_vjdkk")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="CheckBox" type="CheckBox" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_filter = 2
+
+[node name="ButtonClose" type="Button" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -31.0
+offset_bottom = 31.0
+grow_horizontal = 0
+text = "X"
+
+[connection signal="button_down" from="." to="." method="_on_button_image_path_down"]
+[connection signal="button_down" from="ButtonClose" to="." method="_on_button_close_button_down"]

@@ -1,0 +1,917 @@
+[gd_scene load_steps=18 format=3 uid="uid://b2hecib680xxo"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_kdk05"]
+[ext_resource type="Texture2D" uid="uid://c7e5jk2cjq645" path="res://93-375853511-0.png" id="2_7buqs"]
+[ext_resource type="Script" path="res://pc_styles.gd" id="3_1upy7"]
+[ext_resource type="PackedScene" uid="uid://ct45k75y55bs7" path="res://button_style.tscn" id="3_shkeo"]
+[ext_resource type="Texture2D" uid="uid://clk3a7pblhpt7" path="res://none.png" id="5_obvwa"]
+[ext_resource type="Texture2D" uid="uid://c3yx6opni2q6w" path="res://anime.png" id="5_x888i"]
+[ext_resource type="Texture2D" uid="uid://bifdi0unmgn84" path="res://comic.png" id="7_6hq2v"]
+[ext_resource type="Texture2D" uid="uid://3ypjq2nenddl" path="res://photorealistic.png" id="8_x2b7s"]
+[ext_resource type="Texture2D" uid="uid://w3crjj0wnuan" path="res://old painting.png" id="9_05opp"]
+[ext_resource type="Texture2D" uid="uid://bukp1msrb78vt" path="res://cartoon.png" id="10_rpv4a"]
+[ext_resource type="Texture2D" uid="uid://ykp2syly3gfc" path="res://clay dolls.png" id="11_bs0x6"]
+[ext_resource type="Texture2D" uid="uid://cmrv2cs65r6n4" path="res://wool dolls.png" id="12_lb424"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0il2h"]
+bg_color = Color(0.129412, 0.14902, 0.2, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tgwku"]
+bg_color = Color(0.129412, 0.14902, 0.2, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pc4vs"]
+bg_color = Color(0.101241, 0.101241, 0.101241, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tj8uk"]
+bg_color = Color(0.101961, 0.101961, 0.101961, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gsnuc"]
+bg_color = Color(0.129412, 0.14902, 0.2, 1)
+
+[node name="Main" type="Control" node_paths=PackedStringArray("pc_kobold_cpp_settings", "pc_comfy_ui_settings", "pc_ebook_settings", "container_text_generation", "container_ebook_generation", "image_display", "panel_cover_paragraph", "panel_paragraph", "panel_styles")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_kdk05")
+pc_kobold_cpp_settings = NodePath("ContainerSettings/PCKoboldCppSettings")
+pc_comfy_ui_settings = NodePath("ContainerSettings/PCComfyUISettings")
+pc_ebook_settings = NodePath("ContainerSettings/PCEbookSettings")
+container_text_generation = NodePath("VBoxContainer/ContainerMain/Control/MarginContainer/ContainerTextGeneration")
+container_ebook_generation = NodePath("VBoxContainer/ContainerMain/MarginContainer2/ContainerEbookGeneration")
+image_display = NodePath("VBoxContainer/ContainerMain/Control/ImageDisplay")
+panel_cover_paragraph = NodePath("VBoxContainer/ContainerMain/MarginContainer2/ContainerEbookGeneration/PanelCoverParagraph")
+panel_paragraph = NodePath("VBoxContainer/ContainerMain/MarginContainer2/ContainerEbookGeneration/PanelParagraph")
+panel_styles = NodePath("PanelContainer/VBoxContainer2/PCStyles")
+
+[node name="Node" type="Node" parent="."]
+
+[node name="HTTPRequestTFGApi" type="HTTPRequest" parent="Node"]
+timeout = 8.0
+
+[node name="HTTPRequestKoboldCpp" type="HTTPRequest" parent="Node"]
+timeout = 8.0
+
+[node name="HTTPRequestComfyUI" type="HTTPRequest" parent="Node"]
+
+[node name="HTTPRequestStory" type="HTTPRequest" parent="Node"]
+
+[node name="HTTPRequestCharacters" type="HTTPRequest" parent="Node"]
+
+[node name="HTTPRequestTitle" type="HTTPRequest" parent="Node"]
+
+[node name="HTTPRequestEbook" type="HTTPRequest" parent="Node"]
+
+[node name="HTTPRequestGeneratePrompt" type="HTTPRequest" parent="Node"]
+
+[node name="PanelBackground" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_0il2h")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ButtonKoboldCpp" type="Button" parent="VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+focus_mode = 0
+text = "Connect"
+
+[node name="LabelKoboldCpp" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "KoboldCpp:"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ButtonTFGApi" type="Button" parent="VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+focus_mode = 0
+text = "Connect"
+
+[node name="LabelTFGApi" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "TFGApi:"
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme_override_constants/outline_size = 1
+text = "Ebooks Generator"
+horizontal_alignment = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="ButtonKoboldCppSettings" type="Button" parent="VBoxContainer/HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+focus_mode = 0
+text = "KoboldCpp Settings"
+
+[node name="ButtonComfyUISettings" type="Button" parent="VBoxContainer/HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+focus_mode = 0
+text = "ComfyUI Settings"
+
+[node name="ButtonEbookSettings" type="Button" parent="VBoxContainer/HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+focus_mode = 0
+text = "Ebook Settings"
+
+[node name="ContainerMain" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Control" type="Control" parent="VBoxContainer/ContainerMain"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/ContainerMain/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 50
+
+[node name="ContainerTextGeneration" type="VBoxContainer" parent="VBoxContainer/ContainerMain/Control/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="LabelIdea" type="Label" parent="VBoxContainer/ContainerMain/Control/MarginContainer/ContainerTextGeneration"]
+layout_mode = 2
+text = "Idea:"
+
+[node name="TextEditIdea" type="TextEdit" parent="VBoxContainer/ContainerMain/Control/MarginContainer/ContainerTextGeneration"]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+text = "A knight facing a gummy dragon"
+placeholder_text = "Idea..."
+wrap_mode = 1
+
+[node name="LabelGenre" type="Label" parent="VBoxContainer/ContainerMain/Control/MarginContainer/ContainerTextGeneration"]
+layout_mode = 2
+text = "Genre:"
+
+[node name="TextEditGenre" type="TextEdit" parent="VBoxContainer/ContainerMain/Control/MarginContainer/ContainerTextGeneration"]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+text = "creative, natural, direct, fantasy"
+placeholder_text = "Genre..."
+wrap_mode = 1
+
+[node name="ButtonGenerateStory" type="Button" parent="VBoxContainer/ContainerMain/Control/MarginContainer/ContainerTextGeneration"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+focus_mode = 0
+text = "Generate Story
+"
+
+[node name="LabelStory" type="Label" parent="VBoxContainer/ContainerMain/Control/MarginContainer/ContainerTextGeneration"]
+layout_mode = 2
+text = "Story:"
+
+[node name="TextEditStory" type="TextEdit" parent="VBoxContainer/ContainerMain/Control/MarginContainer/ContainerTextGeneration"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+size_flags_vertical = 3
+text = "###chapter1:  The Sticky Challenge
+
+Sir Arthur, a brave and skilled knight, found himself in a fantastical world filled with candy and confectionery. He had been tasked with rescuing the kingdom from a gummy dragon, a creature made entirely of candy and confectionery. The dragon breathed sticky goo that bound Sir Arthur to the ground, making it difficult for him to fight back. Despite the odds, Sir Arthur used his wit and knowledge of the land to devise a plan to defeat the dragon and rescue the kingdom from its sugary grasp.
+
+As he pondered his next move, Sir Arthur noticed that the goo the dragon exhaled was sticky but not entirely inedible. He knew that if he could find a way to consume it, he might gain some advantage. He scoured the area, searching for edible substances that could help him counteract the sticky effects of the dragon's goo. After some time, he stumbled upon a stash of sugared almonds hidden away in a nearby cave.
+
+Sir Arthur knew that these almonds would provide a sweet counterbalance to the goo, but he also realized that consuming them would leave him vulnerable to the dragon's attacks. He needed a way to eat the almonds without being caught off guard by the dragon. After considering his options, Sir Arthur decided to use the dragon's own breath against it.
+
+As the dragon approached, Sir Arthur held out a handful of sugared almonds and opened his mouth wide, preparing to catch the dragon's next breath. Just as the dragon exhaled, Sir Arthur rapidly consumed the almonds, allowing the sticky substance to coat his mouth and throat. The goo was unable to bind him, and he was free to counterattack.
+
+With the dragon momentarily stunned, Sir Arthur charged forward, using his sword to strike at the creature's vulnerable spots. The dragon roared in pain as Sir Arthur's blade pierced its gooey flesh, causing it to falter and lose its grip on the ground. Seizing the opportunity, Sir Arthur leaped onto the dragon's back, gripping its wings tightly and using his body weight to pin the creature down.
+
+The dragon, now weakened and unable to breathe, was at Sir Arthur's mercy. He carefully maneuvered the dragon's head, allowing him to slip out of the dragon's grasp. With a final, triumphant blow, Sir Arthur ended the dragon's reign of terror, saving the kingdom from its sugary grasp.
+
+With the dragon defeated, Sir Arthur set out to discover the source of its transformation and the dark magic that had turned the kingdom's once-beloved confectioneries into sentient beings. As he ventured deeper into the land, he knew that the true battle had only just begun.
+
+###chapter2:  The Rise of the Gummy Menace
+
+The gummy dragon was once a beloved creature, a symbol of good fortune and abundance in the kingdom. However, it was transformed by a wicked sorcerer who used dark magic to turn it into a monstrous beast. The dragon's transformation caused a chain reaction, turning all the candy and confectionery in the kingdom into sentient beings with their own desires and motivations. The kingdom was thrown into chaos as these newly sentient beings began to act on their instincts, causing destruction and disorder.
+
+As chaos spread throughout the kingdom, the citizens found themselves at the mercy of these newly sentient beings. The once-peaceful town of Caramel Town was overrun by a group of sentient gummy bears who had taken up residence in the local bakery. The town of Nutmeg City was besieged by a gang of sentient candy canes who had begun raiding the local shops. Even the royal family was not spared, as the sentient gingerbread men who had been a part of the royal guard turned against their former masters.
+
+As the situation grew more dire, the people of the kingdom began to lose hope. They had never experienced anything like this before, and they did not know how to deal with the sentient confectioneries that now controlled their lives. However, amidst the chaos, a glimmer of hope emerged in the form of a group of candy warriors who had managed to maintain their sense of loyalty and purpose despite their newfound sentience.
+
+These candy warriors, led by a brave and determined knight named Sir Arthur, had banded together to find a way to save their kingdom from the gummy menace. They traveled across the land, gathering allies and information, and devising a plan to defeat the sorcerer responsible for the dark magic that had turned their kingdom into a sugary nightmare.
+
+As they prepared for their final battle, Sir Arthur and his candy warriors knew that they faced a daunting task. They were a small group of individuals against a powerful sorcerer and an army of sentient confectioneries. However, they also knew that they had each other, and that together, they could overcome even the most insurmountable challenges.
+
+With their spirits high and their resolve unwavering, Sir Arthur and his candy warriors set out on their quest to save their kingdom and restore peace to their land. They knew that the road ahead would be difficult, but they were determined to succeed, no matter the cost.
+
+As they approached the sorcerer's lair, Sir Arthur and his companions could feel the tension in the air. They knew that the time had come to face their enemies and put an end to the dark magic that had turned their kingdom into a sugary hell. With a deep breath and a determined heart, they charged forward, ready to face whatever challenges lay ahead.
+
+###chapter3:  The Sweet Victory
+
+Sir Arthur and his candy warriors faced a formidable foe in the sorcerer responsible for the dark magic that had turned the kingdom into a sugary nightmare. The sorcerer, a powerful and malevolent figure, had hidden himself away in a heavily fortified castle made entirely of candy and confectioneries. The castle was filled with traps and puzzles, each designed to test the mettle of any who dared to enter.
+
+Undaunted by the challenges ahead, Sir Arthur and his companions pressed on, determined to put an end to the sorcerer's reign of terror. They navigated the castle's treacherous corridors, avoiding deadly traps and overcoming cunning puzzles. As they progressed, they discovered that the sorcerer had been using the sentient confectioneries to gather power and control over the kingdom.
+
+Finally, after what seemed like an eternity, Sir Arthur and his companions reached the sorcerer's throne room. The sorcerer, a tall and imposing figure clad in dark robes, sat upon his throne, a wicked grin spread across his face. He was surrounded by the sentient confectioneries that had been under his control, their eyes glowing with a malevolent light.
+
+\"You fools,\" the sorcerer sneered, his voice dripping with disdain. \"You think you can defeat me? I have the power of the entire kingdom at my command.\"
+
+Sir Arthur stood tall, his eyes locked with the sorcerer's. \"We have faced worse challenges,\" he said, his voice steady and confident. \"And we have prevailed.\"
+
+With that, Sir Arthur and his candy warriors launched a fierce attack on the sorcerer and his minions. The battle was intense and brutal, with the sorcerer using all of his dark magic to try and defeat the heroes. However, Sir Arthur and his companions were undaunted, fighting with every ounce of strength they had.
+
+As the battle raged on, the sentient confectioneries began to turn against their master. Realizing that they had been manipulated and used, they turned their anger and hatred towards the sorcerer. One by one, the confectioneries joined forces with Sir Arthur and his companions, using their own power to help turn the tide of the battle.
+
+Finally, with a mighty strike, Sir Arthur managed to land a decisive blow on the sorcerer, shattering his staff and rendering him powerless. The sorcerer let out a anguished scream as his dark magic dissipated, leaving him vulnerable and defeated.
+
+With the sorcerer defeated and his dark magic undone, the sentient confectioneries returned to their natural state as harmless confectioneries. The kingdom was saved, and peace was restored.
+
+The people of the kingdom hailed Sir Arthur and his candy warriors as heroes, celebrating their bravery and determination. They had faced insurmountable odds and had emerged victorious, proving that even the most unlikely and seemingly insurmountable challenges could be overcome with determination, courage, and a touch of creativity.
+
+As Sir Arthur and his companions basked in the adoration of their grateful people, they knew that their work was far from over. They had saved their kingdom from the gummy menace, but the world outside was still filled with dangers and challenges. However, they were ready for whatever lay ahead, confident in their ability to overcome any obstacle.
+
+And so, Sir Arthur and his candy warriors continued their adventures, ready to face whatever challenges the future held. They were a team of heroes, united by their shared goal of protecting the world from the forces of darkness. And together, they would always prevail, no matter the odds."
+placeholder_text = "Story..."
+wrap_mode = 1
+
+[node name="ButtonContinueStory" type="Button" parent="VBoxContainer/ContainerMain/Control/MarginContainer/ContainerTextGeneration"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+focus_mode = 0
+text = "Continue Story"
+
+[node name="ButtonSplitStory" type="Button" parent="VBoxContainer/ContainerMain/Control/MarginContainer/ContainerTextGeneration"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+focus_mode = 0
+text = "Split Story"
+
+[node name="ImageDisplay" type="PanelContainer" parent="VBoxContainer/ContainerMain/Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_tgwku")
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/ContainerMain/Control/ImageDisplay"]
+layout_mode = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 100
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/ContainerMain/Control/ImageDisplay/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("2_7buqs")
+expand_mode = 4
+stretch_mode = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/ContainerMain/Control/ImageDisplay"]
+layout_mode = 2
+
+[node name="ButtonClose" type="Button" parent="VBoxContainer/ContainerMain/Control/ImageDisplay/VBoxContainer"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+focus_mode = 0
+theme_override_font_sizes/font_size = 32
+text = "X"
+
+[node name="ButtonAnimate" type="Button" parent="VBoxContainer/ContainerMain/Control/ImageDisplay/VBoxContainer"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+size_flags_horizontal = 8
+focus_mode = 0
+theme_override_font_sizes/font_size = 32
+text = ">"
+
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/ContainerMain"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="ContainerEbookGeneration" type="VBoxContainer" parent="VBoxContainer/ContainerMain/MarginContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/ContainerMain/MarginContainer2/ContainerEbookGeneration"]
+layout_mode = 2
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/ContainerMain/MarginContainer2/ContainerEbookGeneration/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "New Book"
+placeholder_text = "Title..."
+
+[node name="ButtonGenerateTitle" type="Button" parent="VBoxContainer/ContainerMain/MarginContainer2/ContainerEbookGeneration/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+focus_mode = 0
+text = "Generate Title"
+
+[node name="ButtonCover" type="Button" parent="VBoxContainer/ContainerMain/MarginContainer2/ContainerEbookGeneration"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+text = "Cover"
+
+[node name="PanelCoverParagraph" type="PanelContainer" parent="VBoxContainer/ContainerMain/MarginContainer2/ContainerEbookGeneration"]
+visible = false
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/ContainerMain/MarginContainer2/ContainerEbookGeneration/PanelCoverParagraph"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="PanelParagraph" type="Panel" parent="VBoxContainer/ContainerMain/MarginContainer2/ContainerEbookGeneration"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/ContainerMain/MarginContainer2/ContainerEbookGeneration/PanelParagraph"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_scroll_mode = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/ContainerMain/MarginContainer2/ContainerEbookGeneration/PanelParagraph/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/ContainerMain/MarginContainer2/ContainerEbookGeneration/PanelParagraph/ScrollContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="ButtonGenerateImages" type="Button" parent="VBoxContainer/ContainerMain/MarginContainer2/ContainerEbookGeneration"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+focus_mode = 0
+text = "Generate Images"
+
+[node name="ButtonGenerateEbook" type="Button" parent="VBoxContainer/ContainerMain/MarginContainer2/ContainerEbookGeneration"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+focus_mode = 0
+text = "Generate Ebook"
+
+[node name="ContainerSettings" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 440.0
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="PCKoboldCppSettings" type="PanelContainer" parent="ContainerSettings"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_pc4vs")
+
+[node name="MarginContainer" type="MarginContainer" parent="ContainerSettings/PCKoboldCppSettings"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ContainerSettings/PCKoboldCppSettings/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ContainerSettings/PCKoboldCppSettings/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/outline_size = 1
+text = "KoboldCpp Settings"
+horizontal_alignment = 1
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="ContainerSettings/PCKoboldCppSettings/MarginContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Label4" type="Label" parent="ContainerSettings/PCKoboldCppSettings/MarginContainer/VBoxContainer/HBoxContainer5"]
+layout_mode = 2
+text = "User Name:"
+
+[node name="LineEdit" type="LineEdit" parent="ContainerSettings/PCKoboldCppSettings/MarginContainer/VBoxContainer/HBoxContainer5"]
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 2
+text = "User"
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="ContainerSettings/PCKoboldCppSettings/MarginContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Label4" type="Label" parent="ContainerSettings/PCKoboldCppSettings/MarginContainer/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+text = "AI Name:"
+
+[node name="LineEdit" type="LineEdit" parent="ContainerSettings/PCKoboldCppSettings/MarginContainer/VBoxContainer/HBoxContainer4"]
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 2
+text = "Writing Machine"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ContainerSettings/PCKoboldCppSettings/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ContainerSettings/PCKoboldCppSettings/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Generate Story Max Length:"
+
+[node name="SpinBox" type="SpinBox" parent="ContainerSettings/PCKoboldCppSettings/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+max_value = 2048.0
+value = 1024.0
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="ContainerSettings/PCKoboldCppSettings/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ContainerSettings/PCKoboldCppSettings/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "Continue Story Max Length:"
+
+[node name="SpinBox" type="SpinBox" parent="ContainerSettings/PCKoboldCppSettings/MarginContainer/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+max_value = 2048.0
+value = 512.0
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="ContainerSettings/PCKoboldCppSettings/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ContainerSettings/PCKoboldCppSettings/MarginContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+text = "Generate Title Max Length:"
+
+[node name="SpinBox" type="SpinBox" parent="ContainerSettings/PCKoboldCppSettings/MarginContainer/VBoxContainer/HBoxContainer3"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+max_value = 2048.0
+value = 200.0
+
+[node name="HBoxContainer6" type="HBoxContainer" parent="ContainerSettings/PCKoboldCppSettings/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ContainerSettings/PCKoboldCppSettings/MarginContainer/VBoxContainer/HBoxContainer6"]
+layout_mode = 2
+text = "Generate Prompt Max Length:"
+
+[node name="SpinBox" type="SpinBox" parent="ContainerSettings/PCKoboldCppSettings/MarginContainer/VBoxContainer/HBoxContainer6"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+max_value = 2048.0
+value = 1024.0
+
+[node name="ButtonClose" type="Button" parent="ContainerSettings/PCKoboldCppSettings"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+focus_mode = 0
+text = "X"
+
+[node name="PCComfyUISettings" type="PanelContainer" parent="ContainerSettings"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_tj8uk")
+
+[node name="MarginContainer" type="MarginContainer" parent="ContainerSettings/PCComfyUISettings"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ContainerSettings/PCComfyUISettings/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ContainerSettings/PCComfyUISettings/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/outline_size = 1
+text = "ComfyUI Settings"
+horizontal_alignment = 1
+
+[node name="HBoxContainer8" type="HBoxContainer" parent="ContainerSettings/PCComfyUISettings/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ContainerSettings/PCComfyUISettings/MarginContainer/VBoxContainer/HBoxContainer8"]
+layout_mode = 2
+text = "Model"
+
+[node name="OptionButton" type="OptionButton" parent="ContainerSettings/PCComfyUISettings/MarginContainer/VBoxContainer/HBoxContainer8"]
+layout_mode = 2
+item_count = 2
+selected = 1
+popup/item_0/text = "Flux Schnell"
+popup/item_0/id = 0
+popup/item_1/text = "Flux Dev"
+popup/item_1/id = 1
+
+[node name="HBoxContainer7" type="HBoxContainer" parent="ContainerSettings/PCComfyUISettings/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label7" type="Label" parent="ContainerSettings/PCComfyUISettings/MarginContainer/VBoxContainer/HBoxContainer7"]
+layout_mode = 2
+text = "Width:"
+
+[node name="SpinBox4" type="SpinBox" parent="ContainerSettings/PCComfyUISettings/MarginContainer/VBoxContainer/HBoxContainer7"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+max_value = 5000.0
+value = 512.0
+
+[node name="Label8" type="Label" parent="ContainerSettings/PCComfyUISettings/MarginContainer/VBoxContainer/HBoxContainer7"]
+layout_mode = 2
+text = "Height:"
+
+[node name="SpinBox5" type="SpinBox" parent="ContainerSettings/PCComfyUISettings/MarginContainer/VBoxContainer/HBoxContainer7"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+max_value = 5000.0
+value = 768.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ContainerSettings/PCComfyUISettings/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ContainerSettings/PCComfyUISettings/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Seed:"
+
+[node name="SpinBox" type="SpinBox" parent="ContainerSettings/PCComfyUISettings/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+min_value = -1.0
+max_value = 4.29497e+09
+value = -1.0
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="ContainerSettings/PCComfyUISettings/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="ContainerSettings/PCComfyUISettings/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "Steps:"
+
+[node name="SpinBox2" type="SpinBox" parent="ContainerSettings/PCComfyUISettings/MarginContainer/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+value = 30.0
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="ContainerSettings/PCComfyUISettings/MarginContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Label3" type="Label" parent="ContainerSettings/PCComfyUISettings/MarginContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+text = "CFG:"
+
+[node name="SpinBox3" type="SpinBox" parent="ContainerSettings/PCComfyUISettings/MarginContainer/VBoxContainer/HBoxContainer3"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+step = 0.1
+value = 7.0
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="ContainerSettings/PCComfyUISettings/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label4" type="Label" parent="ContainerSettings/PCComfyUISettings/MarginContainer/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+text = "Sampler Name:"
+
+[node name="OptionButton" type="OptionButton" parent="ContainerSettings/PCComfyUISettings/MarginContainer/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+item_count = 8
+selected = 0
+popup/item_0/text = "euler"
+popup/item_0/id = 0
+popup/item_1/text = "euler_ancestral"
+popup/item_1/id = 1
+popup/item_2/text = "dpm_2"
+popup/item_2/id = 2
+popup/item_3/text = "dpmpp_sde"
+popup/item_3/id = 7
+popup/item_4/text = "dpmpp_2m"
+popup/item_4/id = 3
+popup/item_5/text = "ddpm"
+popup/item_5/id = 4
+popup/item_6/text = "lcm"
+popup/item_6/id = 5
+popup/item_7/text = "ddim"
+popup/item_7/id = 6
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ContainerSettings/PCComfyUISettings/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label5" type="Label" parent="ContainerSettings/PCComfyUISettings/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Positive Prompt:"
+
+[node name="TextEdit2" type="TextEdit" parent="ContainerSettings/PCComfyUISettings/MarginContainer/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(400, 120)
+layout_mode = 2
+wrap_mode = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="ContainerSettings/PCComfyUISettings/MarginContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Label6" type="Label" parent="ContainerSettings/PCComfyUISettings/MarginContainer/VBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "Negative Prompt:"
+
+[node name="TextEdit3" type="TextEdit" parent="ContainerSettings/PCComfyUISettings/MarginContainer/VBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(400, 120)
+layout_mode = 2
+wrap_mode = 1
+
+[node name="ButtonClose" type="Button" parent="ContainerSettings/PCComfyUISettings"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+focus_mode = 0
+text = "X"
+
+[node name="PCEbookSettings" type="PanelContainer" parent="ContainerSettings"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_tj8uk")
+
+[node name="MarginContainer" type="MarginContainer" parent="ContainerSettings/PCEbookSettings"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ContainerSettings/PCEbookSettings/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ContainerSettings/PCEbookSettings/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/outline_size = 1
+text = "Ebook Settings"
+horizontal_alignment = 1
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="ContainerSettings/PCEbookSettings/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label4" type="Label" parent="ContainerSettings/PCEbookSettings/MarginContainer/VBoxContainer/HBoxContainer5"]
+layout_mode = 2
+text = "Author:"
+
+[node name="LineEdit" type="LineEdit" parent="ContainerSettings/PCEbookSettings/MarginContainer/VBoxContainer/HBoxContainer5"]
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 2
+text = "AI"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="ContainerSettings/PCEbookSettings/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ContainerSettings/PCEbookSettings/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "Number of chapters:"
+
+[node name="SpinBox" type="SpinBox" parent="ContainerSettings/PCEbookSettings/MarginContainer/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+min_value = 1.0
+max_value = 20.0
+value = 3.0
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="ContainerSettings/PCEbookSettings/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ContainerSettings/PCEbookSettings/MarginContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+text = "Prompts for chapter:"
+
+[node name="SpinBox" type="SpinBox" parent="ContainerSettings/PCEbookSettings/MarginContainer/VBoxContainer/HBoxContainer3"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+min_value = 1.0
+max_value = 20.0
+value = 4.0
+
+[node name="Label3" type="Label" parent="ContainerSettings/PCEbookSettings/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/outline_size = 1
+text = "Cover Size"
+horizontal_alignment = 1
+
+[node name="HBoxContainer9" type="HBoxContainer" parent="ContainerSettings/PCEbookSettings/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label7" type="Label" parent="ContainerSettings/PCEbookSettings/MarginContainer/VBoxContainer/HBoxContainer9"]
+layout_mode = 2
+text = "Width:"
+
+[node name="SpinBox4" type="SpinBox" parent="ContainerSettings/PCEbookSettings/MarginContainer/VBoxContainer/HBoxContainer9"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+max_value = 5000.0
+value = 800.0
+
+[node name="Label8" type="Label" parent="ContainerSettings/PCEbookSettings/MarginContainer/VBoxContainer/HBoxContainer9"]
+layout_mode = 2
+text = "Height:"
+
+[node name="SpinBox5" type="SpinBox" parent="ContainerSettings/PCEbookSettings/MarginContainer/VBoxContainer/HBoxContainer9"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+max_value = 5000.0
+value = 1280.0
+
+[node name="ButtonClose" type="Button" parent="ContainerSettings/PCEbookSettings"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+focus_mode = 0
+text = "X"
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -31.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_gsnuc")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+
+[node name="ButtonStyles" type="Button" parent="PanelContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+focus_mode = 0
+text = "Styles"
+
+[node name="PCStyles" type="PanelContainer" parent="PanelContainer/VBoxContainer2" node_paths=PackedStringArray("button_style_list")]
+visible = false
+layout_mode = 2
+script = ExtResource("3_1upy7")
+button_style_list = [NodePath("MarginContainer/ScrollContainer/HBoxContainer/ButtonStyle"), NodePath("MarginContainer/ScrollContainer/HBoxContainer/ButtonStyle4"), NodePath("MarginContainer/ScrollContainer/HBoxContainer/ButtonStyle5"), NodePath("MarginContainer/ScrollContainer/HBoxContainer/ButtonStyle3"), NodePath("MarginContainer/ScrollContainer/HBoxContainer/ButtonStyle6"), NodePath("MarginContainer/ScrollContainer/HBoxContainer/ButtonStyle2"), NodePath("MarginContainer/ScrollContainer/HBoxContainer/ButtonStyle7"), NodePath("MarginContainer/ScrollContainer/HBoxContainer/ButtonStyle8")]
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer2/PCStyles"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/VBoxContainer2/PCStyles/MarginContainer"]
+layout_mode = 2
+vertical_scroll_mode = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer2/PCStyles/MarginContainer/ScrollContainer"]
+layout_mode = 2
+
+[node name="ButtonStyle" parent="PanelContainer/VBoxContainer2/PCStyles/MarginContainer/ScrollContainer/HBoxContainer" instance=ExtResource("3_shkeo")]
+layout_mode = 2
+texture = ExtResource("5_obvwa")
+title = "EMPTY"
+
+[node name="TextureRect" parent="PanelContainer/VBoxContainer2/PCStyles/MarginContainer/ScrollContainer/HBoxContainer/ButtonStyle/VBoxContainer" index="0"]
+texture = ExtResource("5_obvwa")
+
+[node name="CheckBox" parent="PanelContainer/VBoxContainer2/PCStyles/MarginContainer/ScrollContainer/HBoxContainer/ButtonStyle/VBoxContainer" index="1"]
+button_pressed = true
+
+[node name="Label" parent="PanelContainer/VBoxContainer2/PCStyles/MarginContainer/ScrollContainer/HBoxContainer/ButtonStyle/PanelContainer/MarginContainer" index="0"]
+text = "EMPTY"
+
+[node name="ButtonStyle4" parent="PanelContainer/VBoxContainer2/PCStyles/MarginContainer/ScrollContainer/HBoxContainer" instance=ExtResource("3_shkeo")]
+layout_mode = 2
+texture = ExtResource("8_x2b7s")
+title = "Photorealistic"
+positive_prompt = "photorealistic style"
+
+[node name="ButtonStyle5" parent="PanelContainer/VBoxContainer2/PCStyles/MarginContainer/ScrollContainer/HBoxContainer" instance=ExtResource("3_shkeo")]
+layout_mode = 2
+texture = ExtResource("9_05opp")
+title = "Old Painting"
+positive_prompt = "old painting style"
+
+[node name="ButtonStyle3" parent="PanelContainer/VBoxContainer2/PCStyles/MarginContainer/ScrollContainer/HBoxContainer" instance=ExtResource("3_shkeo")]
+layout_mode = 2
+texture = ExtResource("7_6hq2v")
+title = "Comic"
+positive_prompt = "comic style"
+
+[node name="ButtonStyle6" parent="PanelContainer/VBoxContainer2/PCStyles/MarginContainer/ScrollContainer/HBoxContainer" instance=ExtResource("3_shkeo")]
+layout_mode = 2
+texture = ExtResource("10_rpv4a")
+title = "Cartoon"
+positive_prompt = "cartoon style"
+
+[node name="ButtonStyle2" parent="PanelContainer/VBoxContainer2/PCStyles/MarginContainer/ScrollContainer/HBoxContainer" instance=ExtResource("3_shkeo")]
+layout_mode = 2
+texture = ExtResource("5_x888i")
+title = "Anime"
+positive_prompt = "anime style"
+
+[node name="ButtonStyle7" parent="PanelContainer/VBoxContainer2/PCStyles/MarginContainer/ScrollContainer/HBoxContainer" instance=ExtResource("3_shkeo")]
+layout_mode = 2
+texture = ExtResource("11_bs0x6")
+title = "Clay Dolls"
+positive_prompt = "clay dolls style"
+
+[node name="ButtonStyle8" parent="PanelContainer/VBoxContainer2/PCStyles/MarginContainer/ScrollContainer/HBoxContainer" instance=ExtResource("3_shkeo")]
+layout_mode = 2
+texture = ExtResource("12_lb424")
+title = "Wool Dolls"
+positive_prompt = "wool dolls style"
+
+[node name="AcceptDialog" type="AcceptDialog" parent="."]
+initial_position = 2
+size = Vector2i(300, 100)
+dialog_text = "Alert"
+
+[connection signal="request_completed" from="Node/HTTPRequestTFGApi" to="." method="_on_http_request_tfg_api_request_completed"]
+[connection signal="request_completed" from="Node/HTTPRequestKoboldCpp" to="." method="_on_http_request_kobold_cpp_request_completed"]
+[connection signal="request_completed" from="Node/HTTPRequestComfyUI" to="." method="_on_http_request_comfy_ui_request_completed"]
+[connection signal="request_completed" from="Node/HTTPRequestStory" to="." method="_on_http_request_story_request_completed"]
+[connection signal="request_completed" from="Node/HTTPRequestCharacters" to="." method="_on_http_request_characters_request_completed"]
+[connection signal="request_completed" from="Node/HTTPRequestTitle" to="." method="_on_http_request_title_request_completed"]
+[connection signal="request_completed" from="Node/HTTPRequestEbook" to="." method="_on_http_request_ebook_request_completed"]
+[connection signal="request_completed" from="Node/HTTPRequestGeneratePrompt" to="." method="_on_http_request_generate_prompt_request_completed"]
+[connection signal="button_down" from="VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/ButtonKoboldCpp" to="." method="_on_button_kobold_cpp_button_down"]
+[connection signal="button_down" from="VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer2/ButtonTFGApi" to="." method="_on_button_tfg_api_button_down"]
+[connection signal="button_down" from="VBoxContainer/HBoxContainer/VBoxContainer2/ButtonKoboldCppSettings" to="." method="_on_button_kobold_cpp_settings_button_down"]
+[connection signal="button_down" from="VBoxContainer/HBoxContainer/VBoxContainer2/ButtonComfyUISettings" to="." method="_on_button_comfy_ui_settings_button_down"]
+[connection signal="button_down" from="VBoxContainer/HBoxContainer/VBoxContainer2/ButtonEbookSettings" to="." method="_on_button_ebook_settings_button_down"]
+[connection signal="button_down" from="VBoxContainer/ContainerMain/Control/MarginContainer/ContainerTextGeneration/ButtonGenerateStory" to="." method="_on_button_generate_story_button_down"]
+[connection signal="button_down" from="VBoxContainer/ContainerMain/Control/MarginContainer/ContainerTextGeneration/ButtonContinueStory" to="." method="_on_button_continue_story_button_down"]
+[connection signal="button_down" from="VBoxContainer/ContainerMain/Control/MarginContainer/ContainerTextGeneration/ButtonSplitStory" to="." method="_on_button_split_story_button_down"]
+[connection signal="button_down" from="VBoxContainer/ContainerMain/Control/ImageDisplay/VBoxContainer/ButtonClose" to="." method="_on_button_close_0_button_down"]
+[connection signal="button_down" from="VBoxContainer/ContainerMain/Control/ImageDisplay/VBoxContainer/ButtonAnimate" to="." method="_on_button_animate_button_down"]
+[connection signal="button_down" from="VBoxContainer/ContainerMain/MarginContainer2/ContainerEbookGeneration/HBoxContainer/ButtonGenerateTitle" to="." method="_on_button_generate_title_button_down"]
+[connection signal="button_down" from="VBoxContainer/ContainerMain/MarginContainer2/ContainerEbookGeneration/ButtonCover" to="." method="_on_button_cover_button_down"]
+[connection signal="button_down" from="VBoxContainer/ContainerMain/MarginContainer2/ContainerEbookGeneration/ButtonGenerateImages" to="." method="_on_button_generate_images_button_down"]
+[connection signal="button_down" from="VBoxContainer/ContainerMain/MarginContainer2/ContainerEbookGeneration/ButtonGenerateEbook" to="." method="_on_button_generate_ebook_button_down"]
+[connection signal="button_down" from="ContainerSettings/PCKoboldCppSettings/ButtonClose" to="." method="_on_button_close_1_button_down"]
+[connection signal="button_down" from="ContainerSettings/PCComfyUISettings/ButtonClose" to="." method="_on_button_close_2_button_down"]
+[connection signal="button_down" from="ContainerSettings/PCEbookSettings/ButtonClose" to="." method="_on_button_close_3_button_down"]
+[connection signal="button_down" from="PanelContainer/VBoxContainer2/ButtonStyles" to="." method="_on_button_styles_button_down"]
+
+[editable path="PanelContainer/VBoxContainer2/PCStyles/MarginContainer/ScrollContainer/HBoxContainer/ButtonStyle"]

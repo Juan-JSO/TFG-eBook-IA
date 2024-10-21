@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://b613ovm5co7bx"]
+
+[ext_resource type="Script" path="res://button_generate_image.gd" id="1_gygn1"]
+
+[node name="ButtonGenerateImage" type="MarginContainer"]
+custom_minimum_size = Vector2(120, 150)
+script = ExtResource("1_gygn1")
+
+[node name="Button" type="Button" parent="."]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_mode = 0
+theme_override_font_sizes/font_size = 32
+text = "+"
+
+[connection signal="button_down" from="Button" to="." method="_on_button_button_down"]
